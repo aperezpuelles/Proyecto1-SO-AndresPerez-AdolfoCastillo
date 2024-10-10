@@ -40,7 +40,7 @@ public class Trabajador extends Thread {
         if (this.contadorProduccion >= 1) {
             try {
                 empresa.mutex.acquire();  
-                empresa.almacen.actualizarAlmacen(this.tipo, (int) this.contadorProduccion);
+                empresa.almacen.produccionAlmacen(this.tipo, (int) this.contadorProduccion);
                 empresa.mutex.release();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();

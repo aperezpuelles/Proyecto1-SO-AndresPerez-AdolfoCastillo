@@ -17,16 +17,17 @@ public class Empresa {
     private int cantidadProductoresRAM;
     private int cantidadProductoresFuente;
     private int cantidadProductoresGrafica;
+    private int cantidadEnsamblador;
     private Trabajador[] productoresPlacaBase;
     private Trabajador[] productoresCPU;
     private Trabajador[] productoresRAM;
     private Trabajador[] productoresFuente;
     private Trabajador[] productoresGrafica;
+    private Ensamblador[] ensamblador;
     public Almacen almacen;
     private long duracionDiaMs;
     public Semaphore mutex;
 
-    // Constructor de la clase Empresa
     public Empresa(String nombre, int maximoTrabajadores, long duracionDiaMs) {
         this.nombre = nombre;
         this.maximoTrabajadores = maximoTrabajadores;
@@ -35,11 +36,13 @@ public class Empresa {
         this.cantidadProductoresRAM = 1;
         this.cantidadProductoresFuente = 1;
         this.cantidadProductoresGrafica = 1;
+        this.cantidadEnsamblador = 1;
         this.productoresPlacaBase = new Trabajador[maximoTrabajadores];
         this.productoresCPU = new Trabajador[maximoTrabajadores];
         this.productoresRAM = new Trabajador[maximoTrabajadores];
         this.productoresFuente = new Trabajador[maximoTrabajadores];
         this.productoresGrafica = new Trabajador[maximoTrabajadores];
+        this.ensamblador = new Ensamblador[maximoTrabajadores];
         this.almacen = new Almacen(25, 20, 55, 35, 10); 
         this.duracionDiaMs = duracionDiaMs;
         this.mutex = new Semaphore(1);
@@ -47,8 +50,12 @@ public class Empresa {
         inicializarTrabajadores();
     }
     
+    public String getNombre() {
+        return this.nombre;
+    }
+    
     private void inicializarTrabajadores() {
-        int totalTrabajadores = cantidadProductoresPlacaBase + cantidadProductoresCPU + cantidadProductoresRAM + cantidadProductoresFuente + cantidadProductoresGrafica;
+        int totalTrabajadores = cantidadProductoresPlacaBase + cantidadProductoresCPU + cantidadProductoresRAM + cantidadProductoresFuente + cantidadProductoresGrafica + cantidadEnsamblador;
 
         if (totalTrabajadores > maximoTrabajadores) {
             System.out.println("Se excede el máximo de trabajadores permitidos (" + maximoTrabajadores + ").");
@@ -80,6 +87,11 @@ public class Empresa {
                 productoresGrafica[i] = new Trabajador(1.0f/3.0f, 34, this.duracionDiaMs, 5, this);
                 productoresGrafica[i].start();
             }  
+            
+            for (int i = 0; i < cantidadEnsamblador; i++) {
+                ensamblador[i] = new Ensamblador(this.duracionDiaMs,this);
+                ensamblador[i].start();
+            }  
 
         } else if (nombre.equals("Dell")) {
             for (int i = 0; i < cantidadProductoresPlacaBase; i++) {
@@ -105,6 +117,11 @@ public class Empresa {
             for (int i = 0; i < cantidadProductoresGrafica; i++) {
                 productoresGrafica[i] = new Trabajador(1.0f/3.0f, 34, this.duracionDiaMs, 5, this);
                 productoresGrafica[i].start();
+            }
+            
+            for (int i = 0; i < cantidadEnsamblador; i++) {
+                ensamblador[i] = new Ensamblador(this.duracionDiaMs,this);
+                ensamblador[i].start();
             }  
         }        
     }
