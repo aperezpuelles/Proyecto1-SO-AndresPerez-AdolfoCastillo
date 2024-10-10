@@ -5,8 +5,6 @@
  */
 package proyecto1.so;
 
-import proyecto1.Interfaces.Menu;
-
 /**
  *
  * @author Ignacio
@@ -17,10 +15,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
-        
+
         Empresa Msi = new Empresa("MSI", 15, 1000L);
         Empresa Dell = new Empresa("Dell", 12, 1000L);
         
