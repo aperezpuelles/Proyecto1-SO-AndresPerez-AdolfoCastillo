@@ -21,8 +21,9 @@ public class Main {
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         
-        Empresa Msi = new Empresa("MSI", 15, 1000L);
-        Empresa Dell = new Empresa("Dell", 12, 1000L);
+        Empresa Msi = new Empresa("MSI", 15, 3000L);
+        Empresa Dell = new Empresa("Dell", 12, 3000L);
+
         
     }
     

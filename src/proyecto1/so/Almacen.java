@@ -20,6 +20,8 @@ public class Almacen {
     private int cantidadfuentemax;
     private int cantidadgrafica;
     private int cantidadgraficasmax;
+    private int cantidadcomputadorasnormales;
+    private int cantidadcomputadorascongrafica;
 
     public Almacen(int cantidadplacabasemax, int cantidadcpumax, int cantidadrammax, int cantidadfuentemax, int cantidadgraficasmax) {
         this.cantidadplacabase = 0;
@@ -32,9 +34,11 @@ public class Almacen {
         this.cantidadfuentemax = cantidadfuentemax;
         this.cantidadgrafica = 0;
         this.cantidadgraficasmax = cantidadgraficasmax;
+        this.cantidadcomputadorasnormales = 0;
+        this.cantidadcomputadorascongrafica = 0;
     }
 
-    public void actualizarAlmacen(int tipo, int contadorProduccion) {
+    public void produccionAlmacen(int tipo, int contadorProduccion) {
         switch (tipo) {
             case 1: // Placa Base
                 if (this.cantidadplacabase + contadorProduccion <= this.cantidadplacabasemax) {
@@ -86,5 +90,41 @@ public class Almacen {
                 break;
         }
     }
+    
+    public boolean hayPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias) {
+        return this.cantidadplacabase >= placasBaseNecesarias &&
+               this.cantidadcpu >= cpuNecesarias &&
+               this.cantidadram >= ramNecesarias &&
+               this.cantidadfuente >= fuentesNecesarias;
+    }
+    
+    public boolean hayPartesGrafica(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias) {
+        return this.cantidadplacabase >= placasBaseNecesarias &&
+               this.cantidadcpu >= cpuNecesarias &&
+               this.cantidadram >= ramNecesarias &&
+               this.cantidadfuente >= fuentesNecesarias &&
+               this.cantidadgrafica >= graficasNecesarias;
+    }
+    
+    public void restarPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias, boolean siRestaGrafica) {
+        this.cantidadplacabase -= placasBaseNecesarias;
+        this.cantidadcpu -= cpuNecesarias;
+        this.cantidadram -= ramNecesarias;
+        this.cantidadfuente -= fuentesNecesarias;
+        System.out.println(siRestaGrafica);
+        if (siRestaGrafica){
+            this.cantidadgrafica -= graficasNecesarias;
+        }
+    }    
+    
+    public void agregarComputadoraEnsamblada(boolean siRestaGrafica) {
+        if(siRestaGrafica){
+            this.cantidadcomputadorascongrafica++;
+        }
+        this.cantidadcomputadorasnormales++;
+        System.out.println(cantidadcomputadorascongrafica);
+        System.out.println(cantidadcomputadorasnormales);
+    }
+    
 }    
 
