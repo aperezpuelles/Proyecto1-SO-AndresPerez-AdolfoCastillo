@@ -53,6 +53,134 @@ public class Empresa {
     public String getNombre() {
         return this.nombre;
     }
+
+    public int getMaximoTrabajadores() {
+        return maximoTrabajadores;
+    }
+
+    public void setMaximoTrabajadores(int maximoTrabajadores) {
+        this.maximoTrabajadores = maximoTrabajadores;
+    }
+
+    public int getCantidadProductoresPlacaBase() {
+        return cantidadProductoresPlacaBase;
+    }
+
+    public void setCantidadProductoresPlacaBase(int cantidadProductoresPlacaBase) {
+        this.cantidadProductoresPlacaBase = cantidadProductoresPlacaBase;
+    }
+
+    public int getCantidadProductoresCPU() {
+        return cantidadProductoresCPU;
+    }
+
+    public void setCantidadProductoresCPU(int cantidadProductoresCPU) {
+        this.cantidadProductoresCPU = cantidadProductoresCPU;
+    }
+
+    public int getCantidadProductoresRAM() {
+        return cantidadProductoresRAM;
+    }
+
+    public void setCantidadProductoresRAM(int cantidadProductoresRAM) {
+        this.cantidadProductoresRAM = cantidadProductoresRAM;
+    }
+
+    public int getCantidadProductoresFuente() {
+        return cantidadProductoresFuente;
+    }
+
+    public void setCantidadProductoresFuente(int cantidadProductoresFuente) {
+        this.cantidadProductoresFuente = cantidadProductoresFuente;
+    }
+
+    public int getCantidadProductoresGrafica() {
+        return cantidadProductoresGrafica;
+    }
+
+    public void setCantidadProductoresGrafica(int cantidadProductoresGrafica) {
+        this.cantidadProductoresGrafica = cantidadProductoresGrafica;
+    }
+
+    public int getCantidadEnsamblador() {
+        return cantidadEnsamblador;
+    }
+
+    public void setCantidadEnsamblador(int cantidadEnsamblador) {
+        this.cantidadEnsamblador = cantidadEnsamblador;
+    }
+
+    public Trabajador[] getProductoresPlacaBase() {
+        return productoresPlacaBase;
+    }
+
+    public void setProductoresPlacaBase(Trabajador[] productoresPlacaBase) {
+        this.productoresPlacaBase = productoresPlacaBase;
+    }
+
+    public Trabajador[] getProductoresCPU() {
+        return productoresCPU;
+    }
+
+    public void setProductoresCPU(Trabajador[] productoresCPU) {
+        this.productoresCPU = productoresCPU;
+    }
+
+    public Trabajador[] getProductoresRAM() {
+        return productoresRAM;
+    }
+
+    public void setProductoresRAM(Trabajador[] productoresRAM) {
+        this.productoresRAM = productoresRAM;
+    }
+
+    public Trabajador[] getProductoresFuente() {
+        return productoresFuente;
+    }
+
+    public void setProductoresFuente(Trabajador[] productoresFuente) {
+        this.productoresFuente = productoresFuente;
+    }
+
+    public Trabajador[] getProductoresGrafica() {
+        return productoresGrafica;
+    }
+
+    public void setProductoresGrafica(Trabajador[] productoresGrafica) {
+        this.productoresGrafica = productoresGrafica;
+    }
+
+    public Ensamblador[] getEnsamblador() {
+        return ensamblador;
+    }
+
+    public void setEnsamblador(Ensamblador[] ensamblador) {
+        this.ensamblador = ensamblador;
+    }
+
+    public Almacen getAlmacen() {
+        return almacen;
+    }
+
+    public void setAlmacen(Almacen almacen) {
+        this.almacen = almacen;
+    }
+
+    public long getDuracionDiaMs() {
+        return duracionDiaMs;
+    }
+
+    public void setDuracionDiaMs(long duracionDiaMs) {
+        this.duracionDiaMs = duracionDiaMs;
+    }
+
+    public Semaphore getMutex() {
+        return mutex;
+    }
+
+    public void setMutex(Semaphore mutex) {
+        this.mutex = mutex;
+    }
     
     private void inicializarTrabajadores() {
         int totalTrabajadores = cantidadProductoresPlacaBase + cantidadProductoresCPU + cantidadProductoresRAM + cantidadProductoresFuente + cantidadProductoresGrafica + cantidadEnsamblador;
@@ -124,5 +252,36 @@ public class Empresa {
                 ensamblador[i].start();
             }  
         }        
+    }
+
+    public void actualizarCantidadProductores(int tipo, int cantidad) {
+        switch (tipo) {
+            case 1: // Placa Base
+                setCantidadProductoresPlacaBase(cantidad);
+                break;
+            case 2: // CPU
+                setCantidadProductoresCPU(cantidad);
+                break;
+            case 3: // RAM
+                setCantidadProductoresRAM(cantidad);
+                break;
+            case 4: // Fuente
+                setCantidadProductoresFuente(cantidad);
+                break;
+            case 5: // Gráfica
+                setCantidadProductoresGrafica(cantidad);
+                break;
+            case 6: // Ensamblador
+                setCantidadEnsamblador(cantidad);
+                break;
+        }
+        System.out.println("Cantidad de Productores:");
+        System.out.println("Placa Base: " + cantidadProductoresPlacaBase);
+        System.out.println("CPU: " + cantidadProductoresCPU);
+        System.out.println("RAM: " + cantidadProductoresRAM);
+        System.out.println("Fuente: " + cantidadProductoresFuente);
+        System.out.println("Gráfica: " + cantidadProductoresGrafica);
+        System.out.println("Ensamblador: " + cantidadEnsamblador);
+        inicializarTrabajadores();
     }
 }
