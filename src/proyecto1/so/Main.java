@@ -15,7 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        Empresa Msi = new Empresa("MSI", 15, 1000L);
+        Empresa Dell = new Empresa("Dell", 12, 1000L);
+        
     }
     
 }

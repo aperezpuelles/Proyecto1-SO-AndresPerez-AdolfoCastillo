@@ -6,7 +6,6 @@
 package proyecto1.so;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.concurrent.Semaphore;
 
 /**
  *
@@ -19,18 +18,16 @@ public class Trabajador extends Thread {
     private long duracionDiaMs;      
     private int tipo;             
     private float contadorProduccion;  
-    private Almacen almacen;
-    private Semaphore mutex;
+    private Empresa empresa;
 
-    public Trabajador(float produccionPorDia, float salario, long duracionDiaMs, int tipo, Almacen almacen, Semaphore mutex) {
+    public Trabajador(float produccionPorDia, float salario, long duracionDiaMs, int tipo, Empresa empresa) {
         this.produccionPorDia = produccionPorDia;
         this.salario = salario;
         this.salarioAcumulado = 0;
         this.duracionDiaMs = duracionDiaMs;
         this.tipo = tipo; // 1. placabase, 2. cpu, 3. ram, 4. fuente, 5. graficas
         this.contadorProduccion = 0;
-        this.almacen = almacen;
-        this.mutex = mutex;
+        this.empresa = empresa;
     }
 
     public void pagarSalario() {
@@ -39,13 +36,12 @@ public class Trabajador extends Thread {
 
     public void producirPorDia() {
         this.contadorProduccion += this.produccionPorDia;
-
       
         if (this.contadorProduccion >= 1) {
             try {
-                mutex.acquire();  
-                almacen.actualizarAlmacen(this.tipo, (int) this.contadorProduccion);
-                mutex.release();
+                empresa.mutex.acquire();  
+                empresa.almacen.actualizarAlmacen(this.tipo, (int) this.contadorProduccion);
+                empresa.mutex.release();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
