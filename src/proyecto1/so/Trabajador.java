@@ -19,6 +19,7 @@ public class Trabajador extends Thread {
     private int tipo;             
     private float contadorProduccion;  
     private Empresa empresa;
+    private int diastotal; 
 
     public Trabajador(float produccionPorDia, float salario, int duracionDiaSeg, int tipo, Empresa empresa) {
         this.produccionPorDia = produccionPorDia;
@@ -59,6 +60,8 @@ public class Trabajador extends Thread {
 
         while (true) {
             try {
+                diastotal++;
+                System.out.println("Dias: " + diastotal);
                 pagarSalario();
                 producirPorDia();
                 sleep(this.duracionDiaSeg);  
