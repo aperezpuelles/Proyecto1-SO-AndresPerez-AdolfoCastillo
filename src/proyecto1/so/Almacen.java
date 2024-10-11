@@ -10,7 +10,7 @@ package proyecto1.so;
  * @author Ignacio
  */
 public class Almacen {
-    private int cantidadplacabase;
+    public int cantidadplacabase;
     private int cantidadplacabasemax;
     private int cantidadcpu;
     private int cantidadcpumax;
@@ -37,6 +37,64 @@ public class Almacen {
         this.cantidadcomputadorasnormales = 0;
         this.cantidadcomputadorascongrafica = 0;
     }
+
+    public int getCantidadplacabase() {
+        return cantidadplacabase;
+    }
+
+    public int getCantidadcpu() {
+        return cantidadcpu;
+    }
+
+    public int getCantidadram() {
+        return cantidadram;
+    }
+
+    public int getCantidadfuente() {
+        return cantidadfuente;
+    }
+
+    public int getCantidadgrafica() {
+        return cantidadgrafica;
+    }
+
+    public int getCantidadcomputadorasnormales() {
+        return cantidadcomputadorasnormales;
+    }
+
+    public int getCantidadcomputadorascongrafica() {
+        return cantidadcomputadorascongrafica;
+    }
+
+    public void setCantidadplacabase(int cantidadplacabase) {
+        this.cantidadplacabase = cantidadplacabase;
+    }
+
+    public void setCantidadcpu(int cantidadcpu) {
+        this.cantidadcpu = cantidadcpu;
+    }
+
+    public void setCantidadram(int cantidadram) {
+        this.cantidadram = cantidadram;
+    }
+
+    public void setCantidadfuente(int cantidadfuente) {
+        this.cantidadfuente = cantidadfuente;
+    }
+
+    public void setCantidadgrafica(int cantidadgrafica) {
+        this.cantidadgrafica = cantidadgrafica;
+    }
+
+    public void setCantidadcomputadorasnormales(int cantidadcomputadorasnormales) {
+        this.cantidadcomputadorasnormales = cantidadcomputadorasnormales;
+    }
+
+    public void setCantidadcomputadorascongrafica(int cantidadcomputadorascongrafica) {
+        this.cantidadcomputadorascongrafica = cantidadcomputadorascongrafica;
+    }
+    
+    
 
     public void produccionAlmacen(int tipo, int contadorProduccion) {
         switch (tipo) {
