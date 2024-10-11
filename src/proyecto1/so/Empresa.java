@@ -38,18 +38,18 @@ public class Empresa {
     private Trabajador[] productoresGrafica;
     private Ensamblador[] ensamblador;
     public Almacen almacen;
-    private long duracionDiaMs;
+    private int duracionDiaSeg;
     public Semaphore mutex;
 
-    public Empresa(String nombre, int maximoTrabajadores, long duracionDiaMs) {
+    public Empresa(String nombre, int maximoTrabajadores, int cantidadProductoresPlacaBase, int cantidadProductoresCPU, int cantidadProductoresRAM, int cantidadProductoresFuente, int cantidadProductoresGrafica, int cantidadEnsamblador, int duracionDiaSeg) {
         this.nombre = nombre;
         this.maximoTrabajadores = maximoTrabajadores;
-        this.cantidadProductoresPlacaBase = 1;
-        this.cantidadProductoresCPU = 1;
-        this.cantidadProductoresRAM = 1;
-        this.cantidadProductoresFuente = 1;
-        this.cantidadProductoresGrafica = 1;
-        this.cantidadEnsamblador = 1;
+        this.cantidadProductoresPlacaBase = cantidadProductoresPlacaBase;
+        this.cantidadProductoresCPU = cantidadProductoresCPU;
+        this.cantidadProductoresRAM = cantidadProductoresRAM;
+        this.cantidadProductoresFuente = cantidadProductoresFuente;
+        this.cantidadProductoresGrafica = cantidadProductoresGrafica;
+        this.cantidadEnsamblador = cantidadEnsamblador;
         this.productoresPlacaBase = new Trabajador[maximoTrabajadores];
         this.productoresCPU = new Trabajador[maximoTrabajadores];
         this.productoresRAM = new Trabajador[maximoTrabajadores];
@@ -57,7 +57,7 @@ public class Empresa {
         this.productoresGrafica = new Trabajador[maximoTrabajadores];
         this.ensamblador = new Ensamblador[maximoTrabajadores];
         this.almacen = new Almacen(25, 20, 55, 35, 10); 
-        this.duracionDiaMs = duracionDiaMs;
+        this.duracionDiaSeg = duracionDiaSeg;
         this.mutex = new Semaphore(1);
 
         inicializarTrabajadores();
@@ -180,11 +180,11 @@ public class Empresa {
     }
 
     public long getDuracionDiaMs() {
-        return duracionDiaMs;
+        return duracionDiaSeg;
     }
 
     public void setDuracionDiaMs(long duracionDiaMs) {
-        this.duracionDiaMs = duracionDiaMs;
+        this.duracionDiaSeg = duracionDiaSeg;
     }
 
     public Semaphore getMutex() {
@@ -283,7 +283,7 @@ public class Empresa {
             }  
             
             for (int i = 0; i < cantidadEnsamblador; i++) {
-                ensamblador[i] = new Ensamblador(this.duracionDiaMs,this);
+                ensamblador[i] = new Ensamblador(this.duracionDiaSeg,this);
                 ensamblador[i].start();
                 contensambladorM++;
             }
@@ -326,7 +326,7 @@ public class Empresa {
             }
             
             for (int i = 0; i < cantidadEnsamblador; i++) {
-                ensamblador[i] = new Ensamblador(this.duracionDiaMs,this);
+                ensamblador[i] = new Ensamblador(this.duracionDiaSeg,this);
                 ensamblador[i].start();
                 contensambladorD++;
             }  
@@ -359,13 +359,23 @@ public class Empresa {
                 setCantidadEnsamblador(cantidad);
                 break;
         }
-        System.out.println("Cantidad de Productores:");
-        System.out.println("Placa Base: " + cantidadProductoresPlacaBase);
-        System.out.println("CPU: " + cantidadProductoresCPU);
-        System.out.println("RAM: " + cantidadProductoresRAM);
-        System.out.println("Fuente: " + cantidadProductoresFuente);
-        System.out.println("Gráfica: " + cantidadProductoresGrafica);
-        System.out.println("Ensamblador: " + cantidadEnsamblador);
+        if(nombre == "Dell"){
+            System.out.println("Cantidad de Productores Dell:");
+            System.out.println("Placa Base Dell: " + cantidadProductoresPlacaBase);
+            System.out.println("CPU Dell: " + cantidadProductoresCPU);
+            System.out.println("RAM Dell: " + cantidadProductoresRAM);
+            System.out.println("Fuente Dell: " + cantidadProductoresFuente);
+            System.out.println("Gráfica Dell: " + cantidadProductoresGrafica);
+            System.out.println("Ensamblador Dell: " + cantidadEnsamblador);
+        }else{
+            System.out.println("Cantidad de Productores Msi:");
+            System.out.println("Placa Base Msi: " + cantidadProductoresPlacaBase);
+            System.out.println("CPU Msi: " + cantidadProductoresCPU);
+            System.out.println("RAM Msi: " + cantidadProductoresRAM);
+            System.out.println("Fuente Msi: " + cantidadProductoresFuente);
+            System.out.println("Gráfica Msi: " + cantidadProductoresGrafica);
+            System.out.println("Ensamblador Msi: " + cantidadEnsamblador);            
+        }
         inicializarTrabajadores();
     }
 }
