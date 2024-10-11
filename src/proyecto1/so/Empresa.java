@@ -253,31 +253,31 @@ public class Empresa {
 
         if (nombre.equals("MSI")) {
             for (int i = 0; i < cantidadProductoresPlacaBase; i++) {
-                productoresPlacaBase[i] = new Trabajador(1.0f/3.0f, 480, this.duracionDiaMs, 1, this);
+                productoresPlacaBase[i] = new Trabajador(1.0f/3.0f, 480, this.duracionDiaSeg, 1, this);
                 productoresPlacaBase[i].start();
                 contplacasM++;
             }
 
             for (int i = 0; i < cantidadProductoresCPU; i++) {
-                productoresCPU[i] = new Trabajador(1.0f/3.0f, 624, this.duracionDiaMs, 2, this);
+                productoresCPU[i] = new Trabajador(1.0f/3.0f, 624, this.duracionDiaSeg, 2, this);
                 productoresCPU[i].start();
                 contcpuM++;
             }
 
             for (int i = 0; i < cantidadProductoresRAM; i++) {
-                productoresRAM[i] = new Trabajador(2, 800, this.duracionDiaMs, 3, this);
+                productoresRAM[i] = new Trabajador(2, 800, this.duracionDiaSeg, 3, this);
                 productoresRAM[i].start();
                 contramM++;
             }
 
             for (int i = 0; i < cantidadProductoresFuente; i++) {
-                productoresFuente[i] = new Trabajador(3, 384, this.duracionDiaMs, 4, this);
+                productoresFuente[i] = new Trabajador(3, 384, this.duracionDiaSeg, 4, this);
                 productoresFuente[i].start();
                 contfuenteM++;
             }
 
             for (int i = 0; i < cantidadProductoresGrafica; i++) {
-                productoresGrafica[i] = new Trabajador(1.0f/3.0f, 816, this.duracionDiaMs, 5, this);
+                productoresGrafica[i] = new Trabajador(1.0f/3.0f, 816, this.duracionDiaSeg, 5, this);
                 productoresGrafica[i].start();
                 contgraficaM++;
             }  
@@ -288,39 +288,39 @@ public class Empresa {
                 contensambladorM++;
             }
             
-            Director director = new Director(this.duracionDiaMs,this,7);
+            Director director = new Director(this.duracionDiaSeg,this,7);
             director.start();
             
-            ProjectManager pm = new ProjectManager(this.duracionDiaMs,this);
+            ProjectManager pm = new ProjectManager(this.duracionDiaSeg,this);
             pm.start();
 
         } else if (nombre.equals("Dell")) {
             for (int i = 0; i < cantidadProductoresPlacaBase; i++) {
-                productoresPlacaBase[i] = new Trabajador(0.5f, 480, this.duracionDiaMs, 1, this);
+                productoresPlacaBase[i] = new Trabajador(0.5f, 480, this.duracionDiaSeg, 1, this);
                 productoresPlacaBase[i].start();
                 contplacasD++;
             }
 
             for (int i = 0; i < cantidadProductoresCPU; i++) {
-                productoresCPU[i] = new Trabajador(0.5f, 624, this.duracionDiaMs, 2, this);
+                productoresCPU[i] = new Trabajador(0.5f, 624, this.duracionDiaSeg, 2, this);
                 productoresCPU[i].start();
                 contcpuD++;
             }
 
             for (int i = 0; i < cantidadProductoresRAM; i++) {
-                productoresRAM[i] = new Trabajador(3, 800, this.duracionDiaMs, 3, this);
+                productoresRAM[i] = new Trabajador(3, 800, this.duracionDiaSeg, 3, this);
                 productoresRAM[i].start();
                 contramD++;
             }
 
             for (int i = 0; i < cantidadProductoresFuente; i++) {
-                productoresFuente[i] = new Trabajador(3, 384, this.duracionDiaMs, 4, this);
+                productoresFuente[i] = new Trabajador(3, 384, this.duracionDiaSeg, 4, this);
                 productoresFuente[i].start();
                 contfuenteD++;
             }
 
             for (int i = 0; i < cantidadProductoresGrafica; i++) {
-                productoresGrafica[i] = new Trabajador(1.0f/3.0f, 816, this.duracionDiaMs, 5, this);
+                productoresGrafica[i] = new Trabajador(1.0f/3.0f, 816, this.duracionDiaSeg, 5, this);
                 productoresGrafica[i].start();
                 contgraficaD++;
             }
@@ -330,10 +330,10 @@ public class Empresa {
                 ensamblador[i].start();
                 contensambladorD++;
             }  
-            Director director = new Director(this.duracionDiaMs,this,7);
+            Director director = new Director(this.duracionDiaSeg,this,7);
             director.start();
             
-            ProjectManager pm = new ProjectManager(this.duracionDiaMs,this);
+            ProjectManager pm = new ProjectManager(this.duracionDiaSeg,this);
             pm.start();
         }        
     }

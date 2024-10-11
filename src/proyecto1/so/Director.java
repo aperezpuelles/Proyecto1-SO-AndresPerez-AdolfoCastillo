@@ -15,16 +15,16 @@ import java.util.logging.Logger;
 public class Director extends Thread{
     private int salario;           
     private float salarioAcumulado;  
-    private long duracionDiaMs;               
+    private int duracionDiaSeg;               
     private float contadorProduccion;  
     private Empresa empresa;
     public String modo;
     private int diasRestantes;
 
-    public Director(long duracionDiaMs, Empresa empresa, int diasRestantes) {
+    public Director(int duracionDiaSeg, Empresa empresa, int diasRestantes) {
         this.salario = 1440;
         this.salarioAcumulado = 0;
-        this.duracionDiaMs = duracionDiaMs;
+        this.duracionDiaSeg = duracionDiaSeg;
         this.contadorProduccion = 0;
         this.empresa = empresa;
         this.modo = modo;
@@ -71,7 +71,7 @@ public class Director extends Thread{
             try {
                 pagarSalario();
                 revisar();
-                sleep(this.duracionDiaMs);  
+                sleep(this.duracionDiaSeg);  
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }

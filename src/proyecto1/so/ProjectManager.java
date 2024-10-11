@@ -15,15 +15,15 @@ import proyecto1.so.Director;
 public class ProjectManager extends Thread{
     private int salario;           
     private float salarioAcumulado;  
-    private long duracionDiaMs;               
+    private int duracionDiaSeg;               
     private float contadorProduccion;  
     private Empresa empresa;
     private String modo;
 
-    public ProjectManager( long duracionDiaMs, Empresa empresa) {
+    public ProjectManager( int duracionDiaSeg, Empresa empresa) {
         this.salario = 960;
         this.salarioAcumulado = 0;
-        this.duracionDiaMs = duracionDiaMs;
+        this.duracionDiaSeg = duracionDiaSeg;
         this.contadorProduccion = 0;
         this.empresa = empresa;
         this.modo = modo;
@@ -70,7 +70,7 @@ public class ProjectManager extends Thread{
             try {
                 pagarSalario();
                 verAnime();
-                sleep(this.duracionDiaMs);  
+                sleep(this.duracionDiaSeg);  
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
