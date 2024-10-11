@@ -15,16 +15,16 @@ public class Trabajador extends Thread {
     private float produccionPorDia;  
     private float salario;           
     private float salarioAcumulado;  
-    private long duracionDiaMs;      
+    private int duracionDiaSeg;      
     private int tipo;             
     private float contadorProduccion;  
     private Empresa empresa;
 
-    public Trabajador(float produccionPorDia, float salario, long duracionDiaMs, int tipo, Empresa empresa) {
+    public Trabajador(float produccionPorDia, float salario, int duracionDiaSeg, int tipo, Empresa empresa) {
         this.produccionPorDia = produccionPorDia;
         this.salario = salario;
         this.salarioAcumulado = 0;
-        this.duracionDiaMs = duracionDiaMs;
+        this.duracionDiaSeg = duracionDiaSeg;
         this.tipo = tipo; // 1. placabase, 2. cpu, 3. ram, 4. fuente, 5. graficas
         this.contadorProduccion = 0;
         this.empresa = empresa;
@@ -61,7 +61,7 @@ public class Trabajador extends Thread {
             try {
                 pagarSalario();
                 producirPorDia();
-                sleep(this.duracionDiaMs);  
+                sleep(this.duracionDiaSeg);  
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }

@@ -106,24 +106,29 @@ public class Almacen {
                this.cantidadgrafica >= graficasNecesarias;
     }
     
-    public void restarPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias, boolean siRestaGrafica) {
+    public void restarPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias) {
         this.cantidadplacabase -= placasBaseNecesarias;
         this.cantidadcpu -= cpuNecesarias;
         this.cantidadram -= ramNecesarias;
         this.cantidadfuente -= fuentesNecesarias;
-        System.out.println(siRestaGrafica);
-        if (siRestaGrafica){
-            this.cantidadgrafica -= graficasNecesarias;
-        }
     }    
+
+    public void restarPartesGrafica(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias) {
+        this.cantidadplacabase -= placasBaseNecesarias;
+        this.cantidadcpu -= cpuNecesarias;
+        this.cantidadram -= ramNecesarias;
+        this.cantidadfuente -= fuentesNecesarias;
+        this.cantidadgrafica -= graficasNecesarias;
+    } 
     
-    public void agregarComputadoraEnsamblada(boolean siRestaGrafica) {
-        if(siRestaGrafica){
-            this.cantidadcomputadorascongrafica++;
-        }
+    public void agregarComputadoraEnsamblada() {
         this.cantidadcomputadorasnormales++;
-        System.out.println(cantidadcomputadorascongrafica);
         System.out.println(cantidadcomputadorasnormales);
+    }
+    
+    public void agregarComputadoraEnsambladaGrafica() {
+        this.cantidadcomputadorascongrafica++;
+        System.out.println(cantidadcomputadorascongrafica);
     }
     
 }    

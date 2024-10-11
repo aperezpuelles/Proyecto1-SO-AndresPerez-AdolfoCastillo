@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author Ignacio
  */
 public class Ensamblador extends Thread{ 
-    private long duracionDiaMs;
+    private int duracionDiaSeg;
     private float salario;
     private float salarioAcumulado;
     private int computadorasNormalesMinimas;
@@ -23,10 +23,9 @@ public class Ensamblador extends Thread{
     private int fuentesNecesarias;
     private int graficasNecesarias;
     private int contadorDias;
-    public boolean siRestaGrafica;
 
-    public Ensamblador(long duracionDiaMs, Empresa empresa) {
-        this.duracionDiaMs = duracionDiaMs;
+    public Ensamblador(int duracionDiaSeg, Empresa empresa) {
+        this.duracionDiaSeg = duracionDiaSeg;
         this.salario = 50;
         this.salarioAcumulado = 0;
         this.empresa = empresa;
@@ -46,7 +45,6 @@ public class Ensamblador extends Thread{
             this.computadorasNormalesMinimas = 6;
         }
         this.contadorComputadorasSinGrafica = 0;
-       this.siRestaGrafica = false;
     }
     
     public void pagarSalario() {
@@ -57,9 +55,9 @@ public class Ensamblador extends Thread{
         try {
             empresa.mutex.acquire(); 
             if (empresa.almacen.hayPartes(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias)) {
-                empresa.almacen.restarPartes(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias, graficasNecesarias, siRestaGrafica);
+                empresa.almacen.restarPartes(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias);
                 contadorComputadorasSinGrafica++;
-                empresa.almacen.agregarComputadoraEnsamblada(siRestaGrafica);
+                empresa.almacen.agregarComputadoraEnsamblada();
                 empresa.mutex.release();
             } else {
                 empresa.mutex.release();
@@ -73,15 +71,12 @@ public class Ensamblador extends Thread{
     private void ensamblarComputadoraGrafica() {
         try {
             contadorComputadorasSinGrafica = 0;
-            this.siRestaGrafica = true;
             empresa.mutex.acquire(); 
             if (empresa.almacen.hayPartesGrafica(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias, graficasNecesarias)) {
-                empresa.almacen.restarPartes(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias, graficasNecesarias, siRestaGrafica);
-                empresa.almacen.agregarComputadoraEnsamblada(siRestaGrafica);
-                this.siRestaGrafica = false;
+                empresa.almacen.restarPartesGrafica(placasBaseNecesarias, cpuNecesarias, ramNecesarias, fuentesNecesarias, graficasNecesarias);
+                empresa.almacen.agregarComputadoraEnsambladaGrafica();
                 empresa.mutex.release();
             } else {
-                this.siRestaGrafica = false;
                 empresa.mutex.release();
                 System.out.println("No hay suficientes partes para ensamblar una computadora con gráfica.");
             }
@@ -111,7 +106,7 @@ public class Ensamblador extends Thread{
                         contadorDias = 0;                     
                     }
                 }
-                sleep(this.duracionDiaMs);
+                sleep(this.duracionDiaSeg);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
