@@ -5,6 +5,8 @@
  */
 package proyecto1.so;
 
+import proyecto1.Interfaces.Menu;
+
 /**
  *
  * @author Ignacio
@@ -15,7 +17,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+
+        
     }
     
 }

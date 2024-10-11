@@ -1,0 +1,188 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package proyecto1.so;
+
+/**
+ *
+ * @author Ignacio
+ */
+public class Almacen {
+    public int cantidadplacabase;
+    private int cantidadplacabasemax;
+    private int cantidadcpu;
+    private int cantidadcpumax;
+    private int cantidadram;
+    private int cantidadrammax;
+    private int cantidadfuente;
+    private int cantidadfuentemax;
+    private int cantidadgrafica;
+    private int cantidadgraficasmax;
+    private int cantidadcomputadorasnormales;
+    private int cantidadcomputadorascongrafica;
+
+    public Almacen(int cantidadplacabasemax, int cantidadcpumax, int cantidadrammax, int cantidadfuentemax, int cantidadgraficasmax) {
+        this.cantidadplacabase = 0;
+        this.cantidadplacabasemax = cantidadplacabasemax;
+        this.cantidadcpu = 0;
+        this.cantidadcpumax = cantidadcpumax;
+        this.cantidadram = 0;
+        this.cantidadrammax = cantidadrammax;
+        this.cantidadfuente = 0;
+        this.cantidadfuentemax = cantidadfuentemax;
+        this.cantidadgrafica = 0;
+        this.cantidadgraficasmax = cantidadgraficasmax;
+        this.cantidadcomputadorasnormales = 0;
+        this.cantidadcomputadorascongrafica = 0;
+    }
+
+    public int getCantidadplacabase() {
+        return cantidadplacabase;
+    }
+
+    public int getCantidadcpu() {
+        return cantidadcpu;
+    }
+
+    public int getCantidadram() {
+        return cantidadram;
+    }
+
+    public int getCantidadfuente() {
+        return cantidadfuente;
+    }
+
+    public int getCantidadgrafica() {
+        return cantidadgrafica;
+    }
+
+    public int getCantidadcomputadorasnormales() {
+        return cantidadcomputadorasnormales;
+    }
+
+    public int getCantidadcomputadorascongrafica() {
+        return cantidadcomputadorascongrafica;
+    }
+
+    public void setCantidadplacabase(int cantidadplacabase) {
+        this.cantidadplacabase = cantidadplacabase;
+    }
+
+    public void setCantidadcpu(int cantidadcpu) {
+        this.cantidadcpu = cantidadcpu;
+    }
+
+    public void setCantidadram(int cantidadram) {
+        this.cantidadram = cantidadram;
+    }
+
+    public void setCantidadfuente(int cantidadfuente) {
+        this.cantidadfuente = cantidadfuente;
+    }
+
+    public void setCantidadgrafica(int cantidadgrafica) {
+        this.cantidadgrafica = cantidadgrafica;
+    }
+
+    public void setCantidadcomputadorasnormales(int cantidadcomputadorasnormales) {
+        this.cantidadcomputadorasnormales = cantidadcomputadorasnormales;
+    }
+
+    public void setCantidadcomputadorascongrafica(int cantidadcomputadorascongrafica) {
+        this.cantidadcomputadorascongrafica = cantidadcomputadorascongrafica;
+    }
+    
+    
+
+    public void produccionAlmacen(int tipo, int contadorProduccion) {
+        switch (tipo) {
+            case 1: // Placa Base
+                if (this.cantidadplacabase + contadorProduccion <= this.cantidadplacabasemax) {
+                    this.cantidadplacabase += contadorProduccion;
+                    System.out.println("Placas base actuales: " + this.cantidadplacabase);
+                } else {
+                    System.out.println("Capacidad máxima de placas base alcanzada.");
+                }
+                break;
+
+            case 2: // CPU
+                if (this.cantidadcpu + contadorProduccion <= this.cantidadcpumax) {
+                    this.cantidadcpu += contadorProduccion;
+                    System.out.println("CPUs actuales: " + this.cantidadcpu);
+                } else {
+                    System.out.println("Capacidad máxima de CPUs alcanzada.");
+                }
+                break;
+
+            case 3: // Memoria RAM
+                if (this.cantidadram + contadorProduccion <= this.cantidadrammax) {
+                    this.cantidadram += contadorProduccion;
+                    System.out.println("Memorias RAM actuales: " + this.cantidadram);
+                } else {
+                    System.out.println("Capacidad máxima de memorias RAM alcanzada.");
+                }
+                break;
+
+            case 4: // Fuente de Alimentación
+                if (this.cantidadfuente + contadorProduccion <= this.cantidadfuentemax) {
+                    this.cantidadfuente += contadorProduccion;
+                    System.out.println("Fuentes de alimentación actuales: " + this.cantidadfuente);
+                } else {
+                    System.out.println("Capacidad máxima de fuentes de alimentación alcanzada.");
+                }
+                break;
+
+            case 5: // Tarjeta Gráfica
+                if (this.cantidadgrafica + contadorProduccion <= this.cantidadgraficasmax) {
+                    this.cantidadgrafica += contadorProduccion;
+                    System.out.println("Tarjetas gráficas actuales: " + this.cantidadgrafica);
+                } else {
+                    System.out.println("Capacidad máxima de tarjetas gráficas alcanzada.");
+                }
+                break;
+
+            default:
+                System.out.println("Tipo de componente desconocido.");
+                break;
+        }
+    }
+    
+    public boolean hayPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias) {
+        return this.cantidadplacabase >= placasBaseNecesarias &&
+               this.cantidadcpu >= cpuNecesarias &&
+               this.cantidadram >= ramNecesarias &&
+               this.cantidadfuente >= fuentesNecesarias;
+    }
+    
+    public boolean hayPartesGrafica(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias) {
+        return this.cantidadplacabase >= placasBaseNecesarias &&
+               this.cantidadcpu >= cpuNecesarias &&
+               this.cantidadram >= ramNecesarias &&
+               this.cantidadfuente >= fuentesNecesarias &&
+               this.cantidadgrafica >= graficasNecesarias;
+    }
+    
+    public void restarPartes(int placasBaseNecesarias, int cpuNecesarias, int ramNecesarias, int fuentesNecesarias, int graficasNecesarias, boolean siRestaGrafica) {
+        this.cantidadplacabase -= placasBaseNecesarias;
+        this.cantidadcpu -= cpuNecesarias;
+        this.cantidadram -= ramNecesarias;
+        this.cantidadfuente -= fuentesNecesarias;
+        System.out.println(siRestaGrafica);
+        if (siRestaGrafica){
+            this.cantidadgrafica -= graficasNecesarias;
+        }
+    }    
+    
+    public void agregarComputadoraEnsamblada(boolean siRestaGrafica) {
+        if(siRestaGrafica){
+            this.cantidadcomputadorascongrafica++;
+        }
+        this.cantidadcomputadorasnormales++;
+        System.out.println(cantidadcomputadorascongrafica);
+        System.out.println(cantidadcomputadorasnormales);
+    }
+    
+}    
+
