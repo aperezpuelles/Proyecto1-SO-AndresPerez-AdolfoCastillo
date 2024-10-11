@@ -23,7 +23,7 @@ public class Ensamblador extends Thread{
     private int fuentesNecesarias;
     private int graficasNecesarias;
     private int contadorDias;
-    private boolean siRestaGrafica;
+    public boolean siRestaGrafica;
 
     public Ensamblador(long duracionDiaMs, Empresa empresa) {
         this.duracionDiaMs = duracionDiaMs;
@@ -103,7 +103,7 @@ public class Ensamblador extends Thread{
                 System.out.println("Sin grafica" + empresa.getNombre() + contadorComputadorasSinGrafica);
                 System.out.println("Dia: " + contadorDias);
                 if (contadorDias >= 2) {
-                    if (computadorasNormalesMinimas == contadorComputadorasSinGrafica){
+                    if (computadorasNormalesMinimas <= contadorComputadorasSinGrafica){
                         ensamblarComputadoraGrafica();
                         contadorDias = 0;                     
                     }else{
